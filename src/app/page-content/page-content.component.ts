@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ApiService} from '../services/api.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-page-content',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api: ApiService) {
+  }
+
+  users: User[];
 
   ngOnInit(): void {
+    this.api.getUsers().then(response => {
+      this.users = response;
+    });
   }
 
 }

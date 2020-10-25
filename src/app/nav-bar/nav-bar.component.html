@@ -7,7 +7,7 @@
             <div class="col">
               <ul class="navbar-nav nav-tabs">
                 <li class="nav-item col-4">
-                  <a class="nav-link">Home</a>
+                  <a class="nav-link" routerLink="/">Home</a>
                 </li>
                 <li class="nav-item col-4">
                   <a class="nav-link">Products</a>
@@ -19,31 +19,29 @@
             </div>
           </div>
           <div class="w-100"></div>
-            <div class="col w-50 mt-4" style="margin-left: 25%">
-                  <div class="form-group">
-                    <input class="form-control form-control-sm" type="text" placeholder="Login">
-                    <input class="form-control form-control-sm" type="text" placeholder="Password">
-                      <button class="btn btn-primary w-100">Login</button>
-                  </div>
-            </div>
         </div>
         <div class="col-2 h-auto">
           <a class="navbar-brand" style="margin-left: 25%">Music Shop</a>
           <div class="w-100"></div>
-          <img src="assets/logo.jpg" style="margin-left: 18%" height="150" width="150">
+          <!--<img src="assets/logo.jpg" style="margin-left: 18%" height="150" width="150">-->
         </div>
-        <div class="col-5 w-100">
-          <ul class="navbar-nav nav-tabs">
-            <li class="nav-item col-4">
-              <a class="nav-link">Home</a>
-            </li>
-            <li class="nav-item col-4">
-              <a class="nav-link">Products</a>
-            </li>
-            <li class="nav-item col-4">
-              <a class="nav-link">About Us</a>
-            </li>
-          </ul>
+        <div class="col-5">
+          <div class="row nav-justified">
+            <div class="col">
+              <ul class="navbar-nav nav-tabs">
+                <li class="nav-item col-4">
+                  <a class="nav-link" routerLink="/register">Register</a>
+                </li>
+                <li class="nav-item col-4">
+                  <a class="nav-link" routerLink="/login">Login</a>
+                </li>
+                <li class="nav-item col-4">
+                  <a class="nav-link">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-100"></div>
         </div>
       </div>
     </div>

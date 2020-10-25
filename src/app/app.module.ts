@@ -7,6 +7,10 @@ import {NavBarComponent} from './nav-bar/nav-bar.component';
 import {PageContentComponent} from './page-content/page-content.component';
 import {FooterComponent} from './footer/footer.component';
 import {RecComponent} from './rec/rec.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,13 +18,18 @@ import {RecComponent} from './rec/rec.component';
     NavBarComponent,
     PageContentComponent,
     FooterComponent,
-    RecComponent
+    RecComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
