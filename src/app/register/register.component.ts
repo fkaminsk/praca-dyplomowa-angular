@@ -8,19 +8,15 @@ import {ApiService} from '../services/api.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   constructor(private api: ApiService) {
-  }
-
-  ngOnInit(): void {
   }
 
   onRegister(form: NgForm) {
     const value = form.value;
     const user = new User(value.login, value.password, value.email);
-    console.log(value);
-    const response = this.api.registerUser(user);
-    console.log(response);
+    console.log(user);
+    this.api.registerUser(user);
   }
 }
