@@ -1,19 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {AuthService} from './authentication.service';
 import {User} from '../../models/user.model';
-import {ValidationResultModel} from '../../models/validationResult.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) {
-  }
 
-  public login(login: string, password: string) {
-    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(login + ':' + password)});
-    return this.http.get('http://localhost:8080/', {headers, responseType: 'text' as 'json'});
+  constructor(private http: HttpClient, private authentication: AuthService) {
   }
 
   public registerUser(user: User) {
@@ -21,6 +17,8 @@ export class ApiService {
   }
 
   public getUsers(): Promise<User[]> {
-    return this.http.get<User[]>('http://localhost:8080/users').toPromise();
+    let users;
+    this.http.get<User[]>('http://localhost:8080/users').subscribe(u => users = u);
+    return users;
   }
 }

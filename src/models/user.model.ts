@@ -10,9 +10,9 @@ export class User {
   }
 
   readonly userId: number;
-  login: string;
-  password: string;
-  email: string;
-  role: Role;
+  readonly login: string;
+  readonly password: string;
+  readonly email: string;
+  readonly role: Role;
 
 }
