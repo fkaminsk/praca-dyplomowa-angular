@@ -16,7 +16,6 @@ export class RegisterComponent {
   onRegister(form: NgForm) {
     const value = form.value;
     const user = new User(value.login, value.password, value.email);
-    console.log(user);
     this.api.registerUser(user);
   }
 }
