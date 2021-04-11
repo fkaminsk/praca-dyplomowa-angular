@@ -15,7 +15,7 @@ export class PageContentComponent implements OnInit {
   users: User[];
 
   ngOnInit(): void {
-    this.api.getUsers().then(response => {
+    this.api.getUsers().subscribe(response => {
       this.users = response;
     });
   }
