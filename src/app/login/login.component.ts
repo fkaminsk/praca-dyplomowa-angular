@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,18 +14,16 @@ export class LoginComponent implements OnInit {
   password: string;
   message: any;
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(private apiService: ApiService, private router: Router, private auth: AuthService) {
   }
 
   ngOnInit() {
   }
 
   logIn() {
-    const response = this.apiService.login(this.login, this.password);
-    response.subscribe(data => {
-      this.message = data;
-      this.router.navigate(['/']);
-    });
-
+    this.auth.login(this.login, this.password);
+    if (this.auth.isLoggedIn()) {
+      this.router.navigateByUrl('/');
+    }
   }
 }
