@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {User} from '../../models/user.model';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-page-content',
@@ -9,7 +10,7 @@ import {User} from '../../models/user.model';
 })
 export class PageContentComponent implements OnInit {
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private auth: AuthService) {
   }
 
   users: User[];
@@ -18,6 +19,11 @@ export class PageContentComponent implements OnInit {
     this.api.getUsers().subscribe(response => {
       this.users = response;
     });
+  }
+
+  logout() {
+    this.auth.logout();
+    window.location.reload();
   }
 
 }

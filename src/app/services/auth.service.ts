@@ -11,18 +11,17 @@ export class AuthService {
 
   }
 
-  login(login: string, password: string) {
-    return this.http.post<any>(AppSettings.BACKEND_SERVER_URL + '/authenticate', {login, password})
-      .subscribe(response => {
+  async login(login: string, password: string) {
+    await this.http.post<any>(AppSettings.BACKEND_SERVER_URL + '/authenticate', {login, password})
+      .toPromise().then(response => {
         this.setSession(response);
-      });
+      }).catch((err) => console.log(err));
+    return this.isLoggedIn();
   }
 
-  private setSession(authResult) {
-    const expiresAt = moment(authResult.expiresAt).toISOString();
-    console.log(expiresAt);
+  setSession(authResult) {
     localStorage.setItem('id_token', authResult.jwt);
-    localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('expires_at', moment(authResult.expiresAt).toISOString());
   }
 
   logout() {
@@ -52,10 +51,8 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: req.headers.set('Authorization',
           'Bearer ' + idToken)
       });
-
       return next.handle(cloned);
-    }
-    else {
+    } else {
       return next.handle(req);
     }
   }

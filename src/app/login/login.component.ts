@@ -20,10 +20,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  logIn() {
-    this.auth.login(this.login, this.password);
-    if (this.auth.isLoggedIn()) {
-      this.router.navigateByUrl('/');
+  async doLogin() {
+    if (await this.auth.login(this.login, this.password)) {
+      await this.router.navigate(['/']);
     }
   }
 }
