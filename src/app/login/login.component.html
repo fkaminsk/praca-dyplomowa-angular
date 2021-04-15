@@ -1,24 +1,40 @@
-<div class="container p-3">
-  <div class="row">
-    <form>
-      <div class="form-group">
-        <label for="login">Login</label>
-        <input name="login" [(ngModel)]="login" class="form-control" id="login">
+<div class="container">
+  <div class="d-flex justify-content-center m-4 h-auto">
+    <div class="card">
+      <div class="card-header">
+        <h3>Sign In</h3>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" [(ngModel)]="password" class="form-control" id="password">
+      <div class="card-body">
+        <form>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="bi bi-file-person"></i></span>
+            </div>
+            <input name="login" type="text" [(ngModel)]="login" class="form-control" placeholder="login">
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="bi bi-file-lock"></i></span>
+            </div>
+            <input name="password" type="password" [(ngModel)]="password" class="form-control" placeholder="password">
+          </div>
+          <div class="row align-items-center remember">
+            <input type="checkbox">Remember Me
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Login" (click)="doLogin()" class="btn float-right login_btn">
+          </div>
+        </form>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="doLogin()">Submit</button>
-    </form>
-    <div class="col-sm">
-      <div class="text-justify text-center mt-5">
-        Nie jesteś jeszcze naszym klientem?
-        Dostęp do centrum klienta umożliwia śledzenie przesyłek, ocenianie produtków, zamieszczanie ogłoszeń,
-        zarządzenie
-        bonami towarowymi oraz oferuje wiele innych przydatnych funkcji.
+      <div class="card-footer">
+        <div>Don't have an account</div>
+        <div class="d-flex justify-content-center links">
+          <input value="Register" routerLink="/register"  class="btn float-right login_btn">
+        </div>
+        <div class="d-flex justify-content-center">
+          <a href="#">Forgot your password?</a>
+        </div>
       </div>
-      <button class="btn-primary m-3"><a class="btn-primary" routerLink="/register">Register</a></button>
     </div>
   </div>
 </div>
