@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  @ViewChild('f') loginForm: NgForm;
   login: string;
   password: string;
   message: any;
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   async doLogin() {
-    if (await this.auth.login(this.login, this.password)) {
+    if (await this.auth.login(this.loginForm.value.login, this.loginForm.value.password)) {
       await this.router.navigate(['/']);
     }
   }

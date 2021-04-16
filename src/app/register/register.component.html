@@ -5,16 +5,23 @@
         <h3>Register</h3>
       </div>
       <div class="card-body">
-        <form (ngSubmit)="onRegister(f)" #f="ngForm">
+        <form (ngSubmit)="onRegister()" #f="ngForm"><span class="help-block" style="color: red"
+                                                          *ngIf="!email.valid && email.touched">Invalid email format</span>
           <div class="input-group form-group">
             <div class="input-group-prepend"><span class="input-group-text"><i class="bi bi-hexagon"></i></span></div>
+
             <input
               class="form-control"
               id="email"
               name="email"
               placeholder="E-mail"
-              ngModel>
+              ngModel
+              required
+              email
+              #email="ngModel">
           </div>
+          <span class="help-block" style="color: red"
+                *ngIf="!login.valid && login.touched">Cant be empty</span>
           <div class="input-group form-group">
             <div class="input-group-prepend"><span class="input-group-text"><i class="bi bi-hexagon"></i></span></div>
             <input
@@ -22,7 +29,9 @@
               id="login"
               name="login"
               placeholder="Login"
-              ngModel>
+              ngModel
+              required
+              #login="ngModel">
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend"><span class="input-group-text"><i class="bi bi-hexagon"></i></span></div>
