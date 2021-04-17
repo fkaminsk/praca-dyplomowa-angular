@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {User} from '../../models/user.model';
 import {ApiService} from '../services/api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,14 +11,23 @@ import {ApiService} from '../services/api.service';
 })
 export class RegisterComponent {
   @ViewChild('f') registerForm: NgForm;
-  constructor(private api: ApiService) {
+  isProcessing = false;
+
+  constructor(private api: ApiService, private router: Router) {
   }
 
+
   onRegister() {
+    this.isProcessing = true;
     const value = this.registerForm.value;
     const user = new User(value.login, value.password, value.email);
     this.api.registerUser(user).subscribe(response => {
-      console.log('registered user ' + response.login);
+      setTimeout(() => {
+        this.isProcessing = false;
+        console.log('registered user ' + response.login);
+        this.router.navigateByUrl('/');
+      }, 5000);
+
     });
   }
 }
