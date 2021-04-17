@@ -6,12 +6,12 @@ import {AppComponent} from './app.component';
 import {NavBarComponent} from './nav-bar/nav-bar.component';
 import {PageContentComponent} from './page-content/page-content.component';
 import {FooterComponent} from './footer/footer.component';
-import {RecComponent} from './rec/rec.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {AuthInterceptor, AuthService} from './services/auth.service';
+import {AuthInterceptor} from './services/auth.service';
+import { UserPanelComponent } from './login/user-panel/user-panel.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import {AuthInterceptor, AuthService} from './services/auth.service';
     NavBarComponent,
     PageContentComponent,
     FooterComponent,
-    RecComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,7 @@ import {AuthInterceptor, AuthService} from './services/auth.service';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [AuthService, {
+  providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

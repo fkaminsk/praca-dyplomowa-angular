@@ -4,7 +4,9 @@ import {AppSettings} from '../../enums/AppSettings';
 import * as moment from 'moment';
 import {Observable} from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   constructor(private http: HttpClient) {

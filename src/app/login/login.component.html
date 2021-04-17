@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!isLogged; else loginPanel" class="container">
   <div class="d-flex justify-content-center m-4 h-auto">
     <div class="card">
       <div class="card-header">
@@ -55,3 +55,6 @@
     </div>
   </div>
 </div>
+<ng-template #loginPanel>
+  <app-user-panel></app-user-panel>
+</ng-template >

@@ -14,11 +14,13 @@ export class LoginComponent implements OnInit {
   login: string;
   password: string;
   message: any;
+  isLogged: boolean;
 
   constructor(private apiService: ApiService, private router: Router, private auth: AuthService) {
   }
 
   ngOnInit() {
+    this.isLogged = this.auth.isLoggedIn();
   }
 
   async doLogin() {
