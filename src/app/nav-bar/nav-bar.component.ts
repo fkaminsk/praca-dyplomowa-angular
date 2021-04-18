@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../services/auth.service";
+import {AuthService} from '../services/auth.service';
+import {User} from '../../models/user.model';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,11 +9,13 @@ import {AuthService} from "../services/auth.service";
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  loggedAs: User;
 
-  constructor(auth: AuthService) {
+  constructor(public auth: AuthService, private api: ApiService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.auth.getLoggedUser().subscribe(user => this.loggedAs = user);
   }
 
 }

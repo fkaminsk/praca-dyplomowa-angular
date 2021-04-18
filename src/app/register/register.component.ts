@@ -24,10 +24,8 @@ export class RegisterComponent {
     this.api.registerUser(user).subscribe(response => {
       setTimeout(() => {
         this.isProcessing = false;
-        console.log('registered user ' + response.login);
         this.router.navigateByUrl('/');
       }, 5000);
-
     });
   }
 }

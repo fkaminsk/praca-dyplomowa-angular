@@ -1,1 +1,39 @@
-<p>user-panel works!</p>
+<ng-template [ngIf]="isLoggedIn">
+  <div class="row">
+    <div class="col-3 card">
+      <img src="assets/logo.jpg" class="card-img-top" alt="...">
+      <div class="card-header">
+        <p>Logged as: {{loggedAs.login}}</p>
+        <p>Role: {{loggedAs.role}}</p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">User control panel</h5>
+        <p class="card-text">You can manage your account from this simple menu.</p>
+        <p>
+          <button type="submit" class="btn logout_btn" (click)="this.auth.logout()"><i class="bi bi-door-open"></i>
+            Logout
+          </button>
+        </p>
+      </div>
+    </div>
+    <div class="col card" style="width: 18rem; margin-top: 4rem; margin-right: 4rem;">
+      <div class="card-header">
+        <h5>User control panel</h5>
+        <p class="card-text">Welcome, {{loggedAs.login}}. You can manage your account from this simple menu.</p>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            Change login
+          </li>
+          <li class="list-group-item">
+            Change password
+          </li>
+          <li class="list-group-item">
+            Your basket
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-template>

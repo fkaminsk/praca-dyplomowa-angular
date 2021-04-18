@@ -20,10 +20,4 @@ export class PageContentComponent implements OnInit {
       this.users = response;
     });
   }
-
-  logout() {
-    this.auth.logout();
-    window.location.reload();
-  }
-
 }

@@ -29,7 +29,8 @@
             <div class="col">
               <ul class="navbar-nav nav-tabs">
                 <li class="nav-item col">
-                  <a class="nav-link" routerLink="/login"><i class="bi bi-person"></i> Customer Center</a>
+                  <a *ngIf="!this.auth.isLoggedIn(); else logged" class="nav-link" routerLink="/login"><a><i class="bi bi-person"></i>Customer Center</a></a>
+                  <ng-template #logged><a class="nav-link" routerLink="/user_panel"><i class="bi bi-gear"></i> Logged as, <a class="font-weight-bold">{{loggedAs.login}}</a></a></ng-template>
                 </li>
                 <li class="nav-item col-4">
                   <a class="nav-link"><i class="bi bi-cart2"></i> Shopping Basket</a>

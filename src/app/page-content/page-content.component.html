@@ -1,6 +1,7 @@
 <h1>Users:</h1>
-<div *ngFor="let user of users">
-  <p>UserId: {{user.userId}}, User: {{user.login}}, E-mail: {{user.email}}</p>
-</div>
-<button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let user of users">
+    UserId: {{user.userId}}, User: {{user.login}}, E-mail: {{user.email}}
+  </li>
+</ul>
 <br>

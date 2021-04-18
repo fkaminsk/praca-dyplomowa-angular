@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterContentInit, AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 import {User} from '../../../models/user.model';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -7,12 +8,14 @@ import {User} from '../../../models/user.model';
   styleUrls: ['./user-panel.component.scss']
 })
 export class UserPanelComponent implements OnInit {
-  @Input() loggedAs: User;
+  isLoggedIn = false;
+  loggedAs: User;
 
-  constructor() {
+  constructor(public auth: AuthService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.auth.getLoggedUser().subscribe(user => this.loggedAs = user);
+    this.isLoggedIn = await this.auth.isLoggedIn();
   }
-
 }
