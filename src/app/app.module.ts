@@ -12,6 +12,7 @@ import {RegisterComponent} from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AuthInterceptor, AuthService} from './services/auth.service';
+import { NavCategoriesComponent } from './nav-bar/nav-categories/nav-categories.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {AuthInterceptor, AuthService} from './services/auth.service';
     FooterComponent,
     RecComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavCategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {User} from '../../models/user.model';
-import {ApiService} from '../services/api.service';
+import {BackendApiService} from '../services/backend-api.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +10,7 @@ import {ApiService} from '../services/api.service';
 })
 export class RegisterComponent {
 
-  constructor(private api: ApiService) {
+  constructor(private api: BackendApiService) {
   }
 
   onRegister(form: NgForm) {

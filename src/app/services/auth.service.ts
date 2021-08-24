@@ -36,6 +36,10 @@ export class AuthService {
   isLoggedOut() {
     return !this.isLoggedIn();
   }
+
+  getCurrentUser() {
+    localStorage.getItem('id_token');
+  }
 }
 
 @Injectable()

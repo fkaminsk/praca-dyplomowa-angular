@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../services/api.service';
+import {BackendApiService} from '../services/backend-api.service';
 import {User} from '../../models/user.model';
 import {AuthService} from '../services/auth.service';
 
@@ -10,7 +10,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class PageContentComponent implements OnInit {
 
-  constructor(private api: ApiService, private auth: AuthService) {
+  constructor(private api: BackendApiService, private auth: AuthService) {
   }
 
   users: User[];

@@ -6,7 +6,7 @@ import {AppSettings} from '../../enums/AppSettings';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class BackendApiService {
 
   constructor(private http: HttpClient) {
   }

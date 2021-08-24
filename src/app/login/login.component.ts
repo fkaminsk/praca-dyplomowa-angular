@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../services/api.service';
+import {BackendApiService} from '../services/backend-api.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   password: string;
   message: any;
 
-  constructor(private apiService: ApiService, private router: Router, private auth: AuthService) {
+  constructor(private apiService: BackendApiService, private router: Router, private auth: AuthService) {
   }
 
   ngOnInit() {
