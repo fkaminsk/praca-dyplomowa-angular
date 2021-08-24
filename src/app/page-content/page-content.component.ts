@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BackendApiService} from '../services/backend-api.service';
 import {User} from '../../models/user.model';
-import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-page-content',
@@ -10,7 +9,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class PageContentComponent implements OnInit {
 
-  constructor(private api: BackendApiService, private auth: AuthService) {
+  constructor(private api: BackendApiService) {
   }
 
   users: User[];
@@ -20,10 +19,4 @@ export class PageContentComponent implements OnInit {
       this.users = response;
     });
   }
-
-  logout() {
-    this.auth.logout();
-    window.location.reload();
-  }
-
 }

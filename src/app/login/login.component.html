@@ -1,13 +1,25 @@
-<div class="row">
-  <form class="dropdown-item-text">
-    <div class="form-group">
-      <label for="login_popup">Login</label>
-      <input name="login" [(ngModel)]="login" class="form-control" id="login_popup">
-    </div>
-    <div class="form-group">
-      <label for="password_popup">Password</label>
-      <input type="password" name="password" [(ngModel)]="password" class="form-control" id="password_popup">
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="doLogin()">Submit</button> or <button type="submit" class="btn btn-success" routerLink="/register">Register</button>
-  </form>
+<form *ngIf="!this.isLoggedIn" class="dropdown-item-text">
+  <div class="form-group">
+    <input placeholder="Login" name="login" [(ngModel)]="login" class="form-control" id="login_popup">
+  </div>
+  <div class="form-group">
+    <input type="password" placeholder="Password" name="password" [(ngModel)]="password" class="form-control" id="password_popup">
+  </div>
+  <p class="text-info">Forgot your password? Click here.</p>
+  <button class="btn btn-primary" (click)="doLogin()">Submit</button>
+  <div class="dropdown-divider"></div>
+  <p class="text-info">Don't have account yet?</p>
+  <button class="btn btn-primary" routerLink="/register">Register</button>
+</form>
+<div *ngIf="this.isLoggedIn" class="container d-block">
+  <ul>
+    <li>
+      Orders
+    </li>
+    <li>
+      User role: {{currentUser.role}}
+    </li>
+  </ul>
+  <button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
 </div>
+
