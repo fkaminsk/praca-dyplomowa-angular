@@ -1,19 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Product} from '../../../models/product.model';
 import {ActivatedRoute} from '@angular/router';
 import {BackendApiService} from '../../services/backend-api.service';
-import {Product} from '../../../models/product.model';
 
 @Component({
-  selector: 'app-single-product',
-  templateUrl: './single-product.component.html',
-  styleUrls: ['./single-product.component.scss']
+  selector: 'app-create-product',
+  templateUrl: './create-product.component.html',
+  styleUrls: ['./create-product.component.scss']
 })
-export class SingleProductComponent implements OnInit {
+export class CreateProductComponent implements OnInit {
 
   productId: number;
   product: Product;
 
   selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
   message: string;
   imageName: any;
 
@@ -39,6 +42,19 @@ export class SingleProductComponent implements OnInit {
         this.message = 'Image upload failed!';
       }
     });
+  }
+
+
+  getImage() {
+
+    // this.httpClient.get('http://localhost:8080/image/get/' + this.imageName)
+    //   .subscribe(
+    //     res => {
+    //       this.retrieveResonse = res;
+    //       this.base64Data = this.retrieveResonse.picByte;
+    //       this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+    //     }
+    //   );
   }
 
   public onFileChanged(event) {

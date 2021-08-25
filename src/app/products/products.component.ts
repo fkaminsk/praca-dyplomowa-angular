@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   items: Product[];
   pageOfItems: Product[];
 
-  pageSize: number;
+  pageSize = 9;
   maxPages: number;
   initialPage: number;
 

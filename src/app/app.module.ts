@@ -15,6 +15,7 @@ import {NavCategoriesComponent} from './nav-bar/nav-categories/nav-categories.co
 import {ProductsComponent} from './products/products.component';
 import { JwPaginationModule } from 'jw-angular-pagination';
 import { SingleProductComponent } from './products/single-product/single-product.component';
+import { CreateProductComponent } from './products/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SingleProductComponent } from './products/single-product/single-product
     NavCategoriesComponent,
     ProductsComponent,
     SingleProductComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,

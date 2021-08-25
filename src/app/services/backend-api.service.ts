@@ -25,4 +25,12 @@ export class BackendApiService {
   public getProducts() {
     return this.http.get<Product[]>(AppSettings.BACKEND_SERVER_URL + '/products');
   }
+
+  public getProduct(id) {
+    return this.http.get<Product>(AppSettings.BACKEND_SERVER_URL + '/' + id + '/product');
+  }
+
+  public updateProduct(id, image) {
+    return this.http.post(AppSettings.BACKEND_SERVER_URL + '/' + id + '/product/update', image, { observe: 'response' });
+  }
 }

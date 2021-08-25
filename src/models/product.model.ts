@@ -1,14 +1,21 @@
 export class Product {
 
-  constructor(name, categoryName, supplier, price, inStock) {
+  constructor(productId, name, shortDescription, description, image, categoryName, supplier, price, inStock) {
+    this.productId = productId;
     this.name = name;
+    this.shortDescription = shortDescription;
+    this.description = description;
+    this.image = image;
     this.categoryName = categoryName;
     this.supplier = supplier;
     this.inStock = inStock;
   }
 
-  readonly id: number;
+  productId: number;
   name: string;
+  shortDescription: string;
+  description: string;
+  image: any;
   categoryName: string;
   supplier: string;
   price: number;
