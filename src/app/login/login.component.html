@@ -12,11 +12,17 @@
   <button class="btn btn-primary" routerLink="/register">Register</button>
 </form>
 <div *ngIf="this.isLoggedIn" class="container d-block">
-  <ul>
-    <li>
-      Orders
+  <ul class="list-group">
+    <li class="list-group-item">
+      Login: {{currentUser.login}}
     </li>
-    <li>
+    <li class="list-group-item">
+      Email: {{currentUser.email}}
+    </li>
+    <li class="list-group-item">
+      Customer Id: {{currentUser.userId}}
+    </li>
+    <li class="list-group-item">
       User role: {{currentUser.role}}
     </li>
   </ul>

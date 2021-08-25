@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.auth.isLoggedIn();
+    if (this.isLoggedIn) {
+      this.auth.getCurrentUser().subscribe(response => this.currentUser = response);
+    }
   }
 
   async doLogin() {
@@ -31,7 +34,7 @@ export class LoginComponent implements OnInit {
     if (this.isLoggedIn) {
       this.auth.getCurrentUser().subscribe(response => this.currentUser = response);
       this.loginEvent.emit(this.currentUser);
-      this.router.navigateByUrl('/register', {skipLocationChange: true}).then(() =>
+      this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
         this.router.navigate(['/']));
     }
   }
