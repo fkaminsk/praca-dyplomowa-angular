@@ -31,8 +31,15 @@ export class ProductsComponent implements OnInit {
   }
 
   onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
     this.pageOfItems = pageOfItems;
+  }
+
+  onDelete(productId: number) {
+    this.api.deleteProduct(productId).subscribe(response => {
+      if (response.status === 200) {
+        this.api.getProducts().subscribe(items => this.items = items);
+      }
+    });
   }
 
   isAdmin() {

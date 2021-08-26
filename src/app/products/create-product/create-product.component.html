@@ -1,19 +1,62 @@
-<div class="container row">
-  <div class="col-md-6">
-    <input type="file" (change)="onFileChanged($event)">
-  </div>
-  <div class="col-md-6">
-    <input type="button" (click)="onUpload()" value="upload">
-  </div>
-</div>
-<div class="container row">
-  <div class="col-md-12">
-    <div *ngIf=message>{{message}}</div>
-  </div>
-</div>
-<div class="container row">
-  <div class="col-md-6">
-    <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
-           name="name"/>
-  </div>
+<div class="container bg-light text-center">
+  <form class="p-3 ml-5 mr-5" [formGroup]="productForm">
+    <div class="form-group">
+      <input
+        formControlName="name"
+        placeholder="name"
+        class="form-control"
+        id="name" aria-describedby="nameHelp"
+        name="name">
+      <div *ngIf="name.touched && name.invalid" class="alert alert-danger">WRONG</div>
+    </div>
+    <div class="form-group">
+      <input
+        formControlName="shortDescription"
+        placeholder="shorthand description"
+        class="form-control"
+        id="shortDescription"
+        name="shortDescription">
+    </div>
+    <div class="form-group">
+      <textarea
+        formControlName="description"
+        placeholder="Put product description here..."
+        class="form-text"
+        id="description"
+        name="description">
+      </textarea>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" formControlName="categoryName">
+        <option value="" disabled>Select category</option>
+        <option *ngFor="let cat  of categories" [ngValue]="cat">{{cat}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" formControlName="supplier">
+        <option value="" disabled>Select supplier</option>
+        <option *ngFor="let supplier  of suppliers" [ngValue]="supplier">{{supplier.companyName}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input
+        formControlName="price"
+        type="number"
+        placeholder="price"
+        class="form-control"
+        id="price"
+        name="price">
+    </div>
+    <div class="form-group">
+      <input
+        formControlName="inStock"
+        type="number"
+        placeholder="inStock"
+        class="form-control"
+        id="inStock"
+        name="inStock">
+    </div>
+    <app-image-upload (upload)="getImageData($event)"></app-image-upload>
+    <button type="submit" class="btn btn-success" (click)="onCreate()">Create</button>
+  </form>
 </div>

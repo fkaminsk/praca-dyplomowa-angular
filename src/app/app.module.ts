@@ -9,13 +9,14 @@ import {FooterComponent} from './footer/footer.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthInterceptor, AuthService} from './services/auth.service';
 import {NavCategoriesComponent} from './nav-bar/nav-categories/nav-categories.component';
 import {ProductsComponent} from './products/products.component';
-import { JwPaginationModule } from 'jw-angular-pagination';
-import { SingleProductComponent } from './products/single-product/single-product.component';
-import { CreateProductComponent } from './products/create-product/create-product.component';
+import {JwPaginationModule} from 'jw-angular-pagination';
+import {SingleProductComponent} from './products/single-product/single-product.component';
+import {CreateProductComponent} from './products/create-product/create-product.component';
+import {ImageUploadComponent} from './products/image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,14 @@ import { CreateProductComponent } from './products/create-product/create-product
     ProductsComponent,
     SingleProductComponent,
     CreateProductComponent,
+    ImageUploadComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     JwPaginationModule
   ],
   providers: [AuthService, {
