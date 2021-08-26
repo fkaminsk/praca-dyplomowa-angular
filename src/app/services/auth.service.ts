@@ -3,6 +3,7 @@ import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '
 import {AppSettings} from '../../enums/AppSettings';
 import * as moment from 'moment';
 import {Observable} from 'rxjs';
+import {User} from '../../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,9 @@ export class AuthService {
   }
 
   async login(login: string, password: string) {
+    if (this.isLoggedIn()) {
+      this.logout();
+    }
     await this.http.post<any>(AppSettings.BACKEND_SERVER_URL + '/authenticate', {login, password})
       .toPromise().then(response => {
         this.setSession(response);
@@ -38,7 +42,7 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    localStorage.getItem('id_token');
+    return this.http.get<User>(AppSettings.BACKEND_SERVER_URL + '/user');
   }
 }
 

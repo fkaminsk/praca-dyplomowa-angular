@@ -27,6 +27,8 @@
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.5.0",
     "jquery": "^3.5.1",
+    "jw-angular-pagination": "^1.2.0",
+    "jw-paginate": "^1.0.4",
     "momen": "0.0.1-security",
     "moment": "^2.29.1",
     "ngx-bootstrap-icons": "^1.5.3",

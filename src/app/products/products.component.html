@@ -1,0 +1,18 @@
+<div class="container bg-light p-2">
+  <h3 *ngIf="isAdmin()"  class="ml-5"><button class="btn-outline-success border rounded"><i class="bi bi-plus-circle"></i></button></h3>
+  <div class="row justify-content-around align-items-center text-center">
+    <div class="col-3 m-1" *ngFor="let item of pageOfItems">
+      <div class="card m-1">
+        <div class="card-header">{{item.name}}</div>
+        <div class="card-body">
+           <img class="card-img" [src]="'data:image/jpeg;base64,' + item.image" [routerLink]="['/product', item.productId]" alt="Could not load image">
+        </div>
+        <div class="card-footer">{{item.shortDescription}}</div>
+      </div>
+      <div *ngIf="isAdmin()" class="row justify-content-center align-items-center">
+        <button class="btn btn-outline-danger border rounded"><i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+  </div>
+  <jw-pagination class="row justify-content-center p-2" [pageSize]="pageSize" [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+</div>
