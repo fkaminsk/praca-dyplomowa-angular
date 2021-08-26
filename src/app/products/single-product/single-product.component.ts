@@ -29,7 +29,6 @@ export class SingleProductComponent implements OnInit {
   }
 
   onUpload() {
-    console.log(this.selectedFile);
     const uploadImageData = new FormData();
     uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
     this.api.updateProduct(this.productId, uploadImageData).subscribe( response => {

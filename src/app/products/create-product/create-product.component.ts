@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Product} from '../../../models/product.model';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BackendApiService} from '../../services/backend-api.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NewProduct} from '../../../models/new-product.model';
+import {Supplier} from '../../../models/supplier.model';
+import {Category} from '../../../enums/Category';
 
 @Component({
   selector: 'app-create-product',
@@ -10,54 +13,55 @@ import {BackendApiService} from '../../services/backend-api.service';
 })
 export class CreateProductComponent implements OnInit {
 
-  productId: number;
-  product: Product;
+  suppliers: Supplier[];
+  categories = [Category.SPEAKERS, Category.GUITARS, Category.BASSGUITARS, Category.VIOLINS, Category.DRUMS, Category.AMPS];
+  productBlob = new FormData();
+  newProduct: NewProduct;
+  productForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    shortDescription: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    categoryName: new FormControl('', Validators.required),
+    supplier: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    inStock: new FormControl('', Validators.required)
+  });
 
-  selectedFile: File;
-  retrievedImage: any;
-  base64Data: any;
-  retrieveResonse: any;
-  message: string;
-  imageName: any;
-
-
-  constructor(private route: ActivatedRoute, private api: BackendApiService) {
+  constructor(private route: ActivatedRoute, private api: BackendApiService, public fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.productId = +params.get('id');
-    });
-    this.api.getProduct(this.productId).subscribe(response => this.product = response);
+    this.api.getSuppliers().subscribe(response => this.suppliers = response);
   }
 
-  onUpload() {
-    console.log(this.selectedFile);
-    const uploadImageData = new FormData();
-    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.updateProduct(this.productId, uploadImageData).subscribe( response => {
-      if (response.status === 200) {
-        this.message = 'Image uploaded successfully!';
-      } else {
-        this.message = 'Image upload failed!';
+  get name() {
+    return this.productForm.get('name');
+  }
+
+  getImageData(event: FormData) {
+    this.productBlob = event;
+  }
+
+  onCreate() {
+    if (!this.productBlob.has('image')) {
+      this.productBlob.append('image', new Blob(), 'image');
+    }
+
+    this.newProduct = new NewProduct(
+      this.productForm.get('name').value,
+      this.productForm.get('shortDescription').value,
+      this.productForm.get('description').value,
+      this.productForm.get('categoryName').value,
+      this.productForm.get('supplier').value,
+      this.productForm.get('price').value,
+      this.productForm.get('inStock').value
+    );
+
+    this.productBlob.append('product', new Blob([JSON.stringify(this.newProduct)], {type: 'application/json'}));
+    this.api.createProduct(this.productBlob).subscribe(response => {
+      if (response.status !== 200) {
+        console.log('failed!');
       }
     });
-  }
-
-
-  getImage() {
-
-    // this.httpClient.get('http://localhost:8080/image/get/' + this.imageName)
-    //   .subscribe(
-    //     res => {
-    //       this.retrieveResonse = res;
-    //       this.base64Data = this.retrieveResonse.picByte;
-    //       this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-    //     }
-    //   );
-  }
-
-  public onFileChanged(event) {
-    this.selectedFile = event.target.files[0];
   }
 }
