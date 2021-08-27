@@ -21,7 +21,7 @@ export class AuthService {
       .toPromise().then(response => {
         this.setSession(response);
       }).catch((err) => console.log(err));
-    return this.isLoggedIn();
+    return localStorage.getItem('id_token') !== undefined;
   }
 
   setSession(authResult) {

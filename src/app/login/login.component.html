@@ -11,7 +11,7 @@
   <p class="text-info">Don't have account yet?</p>
   <button class="btn btn-primary" routerLink="/register">Register</button>
 </form>
-<div *ngIf="this.auth.isLoggedIn()" class="container d-block">
+<div *ngIf="this.auth.isLoggedIn()" class="container justify-content-center">
   <ul class="list-group">
     <li class="list-group-item">
       Login: {{currentUser.login}}
@@ -26,6 +26,12 @@
       User role: {{currentUser.role}}
     </li>
   </ul>
-  <button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+  <div *ngIf="this.auth.isAdmin()" class="btn-group m-1">
+    <button type="submit" class="btn btn-primary w-100 border-dark" routerLink="/product-create">Create product</button>
+    <button type="submit" class="btn btn-primary w-100 border-dark" routerLink="/products">Manage products</button>
+    <button type="submit" class="btn btn-primary w-100 border-dark" routerLink="/">Manage users</button>
+    <button type="submit" class="btn btn-primary w-100 border-dark" routerLink="/product-create">Manage Order</button>
+  </div>
+  <button type="submit" class="btn btn-danger w-100" (click)="logout()">Logout</button>
 </div>
 

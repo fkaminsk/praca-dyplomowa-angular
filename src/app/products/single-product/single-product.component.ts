@@ -28,18 +28,6 @@ export class SingleProductComponent implements OnInit {
     this.api.getProduct(this.productId).subscribe(response => this.product = response);
   }
 
-  onUpload() {
-    const uploadImageData = new FormData();
-    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.updateProduct(this.productId, uploadImageData).subscribe( response => {
-      if (response.status === 200) {
-        this.message = 'Image uploaded successfully!';
-      } else {
-        this.message = 'Image upload failed!';
-      }
-    });
-  }
-
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
   }

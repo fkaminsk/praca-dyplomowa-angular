@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   password: string;
   message: any;
 
-  @Output() loginEvent: EventEmitter<any> = new EventEmitter();
+  @Output() loginEvent: EventEmitter<User> = new EventEmitter();
 
   ngOnInit() {
     if (this.auth.isLoggedIn()) {
@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
   }
 
   async doLogin() {
-    await this.auth.login(this.login, this.password);
-    if (this.auth.isLoggedIn()) {
-      this.auth.getCurrentUser().subscribe(response => this.currentUser = response);
-      this.loginEvent.emit(this.currentUser);
-      this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
-        this.router.navigate(['/']));
+    if (await this.auth.login(this.login, this.password)) {
+      this.auth.getCurrentUser().subscribe(response => {
+        this.currentUser = response;
+        this.loginEvent.emit(this.currentUser);
+        this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
+          this.router.navigate(['/']));
+      });
     }
   }
 
