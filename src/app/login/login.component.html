@@ -1,4 +1,4 @@
-<form *ngIf="!this.isLoggedIn" class="dropdown-item-text">
+<form *ngIf="!this.auth.isLoggedIn()" class="dropdown-item-text">
   <div class="form-group">
     <input placeholder="Login" name="login" [(ngModel)]="login" class="form-control" id="login_popup">
   </div>
@@ -11,7 +11,7 @@
   <p class="text-info">Don't have account yet?</p>
   <button class="btn btn-primary" routerLink="/register">Register</button>
 </form>
-<div *ngIf="this.isLoggedIn" class="container d-block">
+<div *ngIf="this.auth.isLoggedIn()" class="container d-block">
   <ul class="list-group">
     <li class="list-group-item">
       Login: {{currentUser.login}}

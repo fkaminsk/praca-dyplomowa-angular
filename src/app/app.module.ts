@@ -38,7 +38,7 @@ import {ImageUploadComponent} from './products/image-upload/image-upload.compone
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    JwPaginationModule
+    JwPaginationModule,
   ],
   providers: [AuthService, {
     provide: HTTP_INTERCEPTORS,

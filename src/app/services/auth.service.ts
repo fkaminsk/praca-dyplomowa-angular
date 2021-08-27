@@ -4,6 +4,7 @@ import {AppSettings} from '../../enums/AppSettings';
 import * as moment from 'moment';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user.model';
+import {JwtHelper} from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
@@ -43,6 +44,16 @@ export class AuthService {
 
   getCurrentUser() {
     return this.http.get<User>(AppSettings.BACKEND_SERVER_URL + '/user');
+  }
+
+  getLogin() {
+    if (this.isLoggedIn()) {
+      return new JwtHelper().decodeToken(localStorage.getItem('id_token')).sub;
+    }
+  }
+
+  isAdmin() {
+    return this.getLogin() === 'admin';
   }
 }
 

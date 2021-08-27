@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BackendApiService} from '../../services/backend-api.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NewProduct} from '../../../models/new-product.model';
 import {Supplier} from '../../../models/supplier.model';
 import {Category} from '../../../enums/Category';
@@ -27,7 +27,7 @@ export class CreateProductComponent implements OnInit {
     inStock: new FormControl('', Validators.required)
   });
 
-  constructor(private route: ActivatedRoute, private api: BackendApiService, public fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private api: BackendApiService) {
   }
 
   ngOnInit(): void {
@@ -36,6 +36,22 @@ export class CreateProductComponent implements OnInit {
 
   get name() {
     return this.productForm.get('name');
+  }
+
+  get categoryName() {
+    return this.productForm.get('categoryName');
+  }
+
+  get supplier() {
+    return this.productForm.get('supplier');
+  }
+
+  get price() {
+    return this.productForm.get('price');
+  }
+
+  get inStock() {
+    return this.productForm.get('inStock');
   }
 
   getImageData(event: FormData) {

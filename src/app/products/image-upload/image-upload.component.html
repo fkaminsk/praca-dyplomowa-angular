@@ -1,9 +1,10 @@
-<div class="container row">
-  <div class="col input-group">
-    <input type="file" class="btn" (change)="onFileChanged($event)">
-    <input type="button" class="btn btn-success" (click)="onUpload()" value="upload">
+<h6>Select image</h6>
+<form class="form-control-file">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="validatedCustomFile" (change)="onFileChanged($event)">
+    <label class="custom-file-label" for="validatedCustomFile">{{this.selectedFileName}}</label>
   </div>
-</div>
+</form>
 <div class="container row">
   <div class="col-md-12">
     <div *ngIf=message>{{message}}</div>

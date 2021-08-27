@@ -3,7 +3,6 @@ import {Product} from '../../models/product.model';
 import {BackendApiService} from '../services/backend-api.service';
 import {AuthService} from '../services/auth.service';
 import {User} from '../../models/user.model';
-import {Role} from '../../enums/Role';
 
 @Component({
   selector: 'app-products',
@@ -25,9 +24,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getProducts().subscribe(response => this.items = response);
-    if (this.auth.isLoggedIn()) {
-      this.auth.getCurrentUser().subscribe(response => this.currentUser = response);
-    }
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -40,12 +36,5 @@ export class ProductsComponent implements OnInit {
         this.api.getProducts().subscribe(items => this.items = items);
       }
     });
-  }
-
-  isAdmin() {
-    if (this.auth.isLoggedOut()) {
-      return false;
-    }
-    return this.currentUser.role === Role.ROLE_ADMIN;
   }
 }

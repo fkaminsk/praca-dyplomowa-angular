@@ -9,21 +9,19 @@ import {User} from '../../models/user.model';
 })
 
 export class NavBarComponent implements OnInit {
-  loggedUser: User;
-  isLoggedIn: boolean;
+  loggedUser: string;
 
 
   constructor(public auth: AuthService) {
   }
 
   ngOnInit(): void {
-    this.onLogin();
+    this.loggedUser = this.auth.getLogin();
   }
 
-  onLogin() {
-    this.isLoggedIn = this.auth.isLoggedIn();
-    if (this.isLoggedIn) {
-      this.auth.getCurrentUser().subscribe(response => this.loggedUser = response);
+  onLogin(event: User) {
+    if (this.auth.isLoggedIn) {
+      this.loggedUser = event.login;
     }
   }
 }

@@ -11,11 +11,10 @@ import {User} from '../../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private apiService: BackendApiService, private router: Router, private auth: AuthService) {
+  constructor(private apiService: BackendApiService, private router: Router, public auth: AuthService) {
   }
 
-  currentUser: User;
-  isLoggedIn: boolean;
+  currentUser = new User('', '', '');
   login: string;
   password: string;
   message: any;
@@ -23,15 +22,14 @@ export class LoginComponent implements OnInit {
   @Output() loginEvent: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
-    this.isLoggedIn = this.auth.isLoggedIn();
-    if (this.isLoggedIn) {
+    if (this.auth.isLoggedIn()) {
       this.auth.getCurrentUser().subscribe(response => this.currentUser = response);
     }
   }
 
   async doLogin() {
-    this.isLoggedIn = await this.auth.login(this.login, this.password);
-    if (this.isLoggedIn) {
+    await this.auth.login(this.login, this.password);
+    if (this.auth.isLoggedIn()) {
       this.auth.getCurrentUser().subscribe(response => this.currentUser = response);
       this.loginEvent.emit(this.currentUser);
       this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
@@ -41,6 +39,7 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.auth.logout();
-    window.location.reload();
+    this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
+      this.router.navigate(['/']));
   }
 }
