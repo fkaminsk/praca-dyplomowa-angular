@@ -14,7 +14,6 @@ export class SingleProductComponent implements OnInit {
   product: Product;
 
   selectedFile: File;
-  message: string;
   imageName: any;
 
 

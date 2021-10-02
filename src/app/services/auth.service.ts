@@ -14,9 +14,7 @@ export class AuthService {
   }
 
   async login(login: string, password: string) {
-    if (this.isLoggedIn()) {
-      this.logout();
-    }
+    this.logout();
     await this.http.post<any>(AppSettings.BACKEND_SERVER_URL + '/authenticate', {login, password})
       .toPromise().then(response => {
         this.setSession(response);

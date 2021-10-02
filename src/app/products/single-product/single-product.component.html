@@ -1,14 +1,27 @@
 <div class="container p-2 bg-light">
-  <div class="container row">
-    <div class="col-md-12">
-      <div *ngIf=message>{{message}}</div>
+  <div class="row justify-content-center text-center align-items-center">
+    <div class="col-5 m-1 w-100">
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="d-flex card-body justify-content-center">
+          <img class="card-img" [src]="'data:image/jpeg;base64,' + product.image" alt="Could not load image">
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+    <div class="col-5 m-1 w-100">
+      <app-product-details [product]="this.product"></app-product-details>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header text-center">{{product.name}}</div>
-    <div class="d-flex card-body justify-content-center">
-      <img class="card-img" [src]="'data:image/jpeg;base64,' + product.image" alt="Could not load image">
+  <div class="row container-fluid justify-content-around text-center">
+    <div class="card w-100">
+      <div class="card-header">
+        <h5 class="card-title">{{product.name}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{product.description}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
-    <div class="card-footer card-text">{{product.description}}</div>
   </div>
 </div>

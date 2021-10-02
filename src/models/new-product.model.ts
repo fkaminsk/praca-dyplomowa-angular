@@ -8,6 +8,7 @@ export class NewProduct {
     this.description = description;
     this.categoryName = categoryName;
     this.supplier = supplier;
+    this.price = price;
     this.inStock = inStock;
   }
 

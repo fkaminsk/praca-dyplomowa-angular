@@ -17,6 +17,8 @@ import {JwPaginationModule} from 'jw-angular-pagination';
 import {SingleProductComponent} from './products/single-product/single-product.component';
 import {CreateProductComponent} from './products/create-product/create-product.component';
 import {ImageUploadComponent} from './products/image-upload/image-upload.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {ImageUploadComponent} from './products/image-upload/image-upload.compone
     SingleProductComponent,
     CreateProductComponent,
     ImageUploadComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import {ImageUploadComponent} from './products/image-upload/image-upload.compone
     FormsModule,
     ReactiveFormsModule,
     JwPaginationModule,
+    NgbModule,
   ],
   providers: [AuthService, {
     provide: HTTP_INTERCEPTORS,

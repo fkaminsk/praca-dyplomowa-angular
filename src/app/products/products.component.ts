@@ -11,6 +11,7 @@ import {User} from '../../models/user.model';
 })
 export class ProductsComponent implements OnInit {
   items: Product[];
+  carousel: ['src/assets/carousel1.jpg', 'src/assets/carousel1.jpg', 'src/assets/carousel1.jpg'];
   pageOfItems: Product[];
 
   pageSize = 9;
